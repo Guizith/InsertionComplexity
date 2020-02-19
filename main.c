@@ -150,16 +150,8 @@ int main(int argc, char *argv[]) {
 	t9= clock() -t9;
 	printf("\n Tempo de execucao v9: %lf", ((double)t9)/((CLOCKS_PER_SEC/1000)));
 	
+	//save g_data.txt 
 	FILE *sv = fopen("g_data.txt","w");
-	/*
-	fprintf(sv,"# Coluna 1 > Vetor\n");
-	fprintf(sv,"# Coluna 2 > Tempo\n");
-	fprintf(sv,"# set grid\n");
-	
-	fprintf(sv,"#set title \"Tempo de ordenação dos vetores\"  \n");
-	fprintf(sv,"#set xlabel \"X- qtd itens\"  \n");
-	fprintf(sv,"#set xlabel \"Y- Tempo\"  \n");
-	*/
 	fprintf(sv,"%d\t%lf\n",numvet0,(double)t0);
 	fprintf(sv,"%d\t%lf\n",numvet1,(double)t1);
 	fprintf(sv,"%d\t%lf\n",numvet2,(double)t2);
@@ -171,6 +163,15 @@ int main(int argc, char *argv[]) {
 	fprintf(sv,"%d\t%lf\n",numvet8,(double)t8);
 	fprintf(sv,"%d\t%lf\n",numvet9,(double)t9);
 	fclose(sv);
+	
+	FILE *sc = fopen("script_gnu.txt", "w");
+	//fprintf(sc,"cd 'C:\Users\User\Desktop\facul\Analise e Complexidade Alg\2nd'");//separ
+	fprintf(sc,"set title \"Ordenação Insertion Sort\"\n ");
+	fprintf(sc,"set grid \n ");
+	fprintf(sc,"set xlabel \"Quantidade de itens no vetor\"\n ");
+	fprintf(sc,"set ylabel \"Tempo gasto para ordenar\"\n ");
+	fprintf(sc,"plot \"g_data.txt\" with linespoints lc 1 \n ");
+	fclose(sc);
 	
 	system("pause");
 	return 0;
