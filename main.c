@@ -142,7 +142,7 @@ int main(int argc, char *argv[]) {
 	t8= clock();
 	insertionSort(vet8,numvet8);
 	t8= clock() -t8;
-	printf("\n Tempo de execucao v6: %lf", ((double)t8)/((CLOCKS_PER_SEC/1000)));
+	printf("\n Tempo de execucao v8: %lf", ((double)t8)/((CLOCKS_PER_SEC/1000)));
 	
 	
 	t9= clock();
@@ -150,6 +150,27 @@ int main(int argc, char *argv[]) {
 	t9= clock() -t9;
 	printf("\n Tempo de execucao v9: %lf", ((double)t9)/((CLOCKS_PER_SEC/1000)));
 	
+	FILE *sv = fopen("g_data.txt","w");
+	/*
+	fprintf(sv,"# Coluna 1 > Vetor\n");
+	fprintf(sv,"# Coluna 2 > Tempo\n");
+	fprintf(sv,"# set grid\n");
+	
+	fprintf(sv,"#set title \"Tempo de ordenação dos vetores\"  \n");
+	fprintf(sv,"#set xlabel \"X- qtd itens\"  \n");
+	fprintf(sv,"#set xlabel \"Y- Tempo\"  \n");
+	*/
+	fprintf(sv,"%d\t%lf\n",numvet0,(double)t0);
+	fprintf(sv,"%d\t%lf\n",numvet1,(double)t1);
+	fprintf(sv,"%d\t%lf\n",numvet2,(double)t2);
+	fprintf(sv,"%d\t%lf\n",numvet3,(double)t3);
+	fprintf(sv,"%d\t%lf\n",numvet4,(double)t4);
+	fprintf(sv,"%d\t%lf\n",numvet5,(double)t5);
+	fprintf(sv,"%d\t%lf\n",numvet6,(double)t6);
+	fprintf(sv,"%d\t%lf\n",numvet7,(double)t7);
+	fprintf(sv,"%d\t%lf\n",numvet8,(double)t8);
+	fprintf(sv,"%d\t%lf\n",numvet9,(double)t9);
+	fclose(sv);
 	
 	system("pause");
 	return 0;
