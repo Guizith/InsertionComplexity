@@ -3,14 +3,19 @@
 #include <time.h>
 #include <conio.h>
 
+/*	Atividade 1 Analise e Complexidade de Algoritmos 
+	Guilherme Henrique Moreira 22117039-2
+
+	Este programa ira gerar um arquivo "g_data.txt" contendo a quatidade de itens e o tempo que cada vetor demorou para ser ordenado,
+	também é gerado um arquivo "script_gnu.plt" contendo o script para plot do grafico na ferramenta Gnuplot
+*/
+	
 
 void insertionSort(int vet[], int n){ 
     int i, ch, j; 
     for (i = 1; i < n; i++) { 
-    
         ch = vet[i]; 
         j = i - 1; 
-        
         while (j >= 0 && vet[j] > ch) { 
             vet[j + 1] = vet[j]; 
             j = j - 1; 
@@ -20,19 +25,21 @@ void insertionSort(int vet[], int n){
 
 } 
 
+/*
 void printv(int arr[], int n){ 
     int i; 
     for (i = 0; i < n; i++) 
         printf("%d ", arr[i]); 
     printf("\n"); 
 } 
+*/
 
 int main(int argc, char *argv[]) {
 	
 	//numero de elementos em cada vetor 0-9
-	int numvet0 = 10;
-	int numvet1 = 100;
-	int numvet2 = 1000;
+	int numvet0 = 1000;
+	int numvet1 = 3500;
+	int numvet2 = 7500;
 	int numvet3 = 10000;
 	int numvet4 = 15000;
 	int numvet5 = 25000;
@@ -94,61 +101,61 @@ int main(int argc, char *argv[]) {
 	t0= clock();
 	insertionSort(vet0,numvet0);
 	t0= clock() -t0;
-	printf("\n Tempo de execucao v0: %lf", ((double)t0)/((CLOCKS_PER_SEC/1000)));
+	printf("\n Tempo de execucao v0: %.1lf", ((double)t0)/((CLOCKS_PER_SEC/1000)));
 	
 	
 	t1= clock();
 	insertionSort(vet1,numvet1);
 	t1= clock() -t1;
-	printf("\n Tempo de execucao v1: %lf", ((double)t1)/((CLOCKS_PER_SEC/1000)));
+	printf("\n Tempo de execucao v1: %.1lf", ((double)t1)/((CLOCKS_PER_SEC/1000)));
 	
 	
 	t2= clock();
 	insertionSort(vet2,numvet2);
 	t2= clock() -t2;
-	printf("\n Tempo de execucao v2: %lf", ((double)t2)/((CLOCKS_PER_SEC/1000)));
+	printf("\n Tempo de execucao v2: %.1lf", ((double)t2)/((CLOCKS_PER_SEC/1000)));
 	
 	
 	t3= clock();
 	insertionSort(vet3,numvet3);
 	t3= clock() -t3;
-	printf("\n Tempo de execucao v3: %lf", ((double)t3)/((CLOCKS_PER_SEC/1000)));
+	printf("\n Tempo de execucao v3: %.1lf", ((double)t3)/((CLOCKS_PER_SEC/1000)));
 	
 	
 	t4= clock();
 	insertionSort(vet4,numvet4);
 	t4= clock() -t4;
-	printf("\n Tempo de execucao v4: %lf", ((double)t4)/((CLOCKS_PER_SEC/1000)));
+	printf("\n Tempo de execucao v4: %.1lf", ((double)t4)/((CLOCKS_PER_SEC/1000)));
 	
 	
 	t5= clock();
 	insertionSort(vet5,numvet5);
 	t5= clock() -t5;
-	printf("\n Tempo de execucao v5: %lf", ((double)t5)/((CLOCKS_PER_SEC/1000)));
+	printf("\n Tempo de execucao v5: %.1lf", ((double)t5)/((CLOCKS_PER_SEC/1000)));
 	
 	
 	t6= clock();
 	insertionSort(vet6,numvet6);
 	t6= clock() -t6;
-	printf("\n Tempo de execucao v6: %lf", ((double)t6)/((CLOCKS_PER_SEC/1000)));
+	printf("\n Tempo de execucao v6: %.1lf", ((double)t6)/((CLOCKS_PER_SEC/1000)));
 	
 	
 	t7= clock();
 	insertionSort(vet7,numvet7);
 	t7= clock() -t7;
-	printf("\n Tempo de execucao v7: %lf", ((double)t7)/((CLOCKS_PER_SEC/1000)));
+	printf("\n Tempo de execucao v7: %.1lf", ((double)t7)/((CLOCKS_PER_SEC/1000)));
 	
 	
 	t8= clock();
 	insertionSort(vet8,numvet8);
 	t8= clock() -t8;
-	printf("\n Tempo de execucao v8: %lf", ((double)t8)/((CLOCKS_PER_SEC/1000)));
+	printf("\n Tempo de execucao v8: %.1lf", ((double)t8)/((CLOCKS_PER_SEC/1000)));
 	
 	
 	t9= clock();
 	insertionSort(vet9,numvet9);
 	t9= clock() -t9;
-	printf("\n Tempo de execucao v9: %lf", ((double)t9)/((CLOCKS_PER_SEC/1000)));
+	printf("\n Tempo de execucao v9: %.0lf", ((double)t9)/((CLOCKS_PER_SEC/1000)));
 	
 	//save g_data.txt 
 	FILE *sv = fopen("g_data.txt","w");
@@ -164,14 +171,18 @@ int main(int argc, char *argv[]) {
 	fprintf(sv,"%d\t%lf\n",numvet9,(double)t9);
 	fclose(sv);
 	
-	FILE *sc = fopen("script_gnu.txt", "w");
-	//fprintf(sc,"cd 'C:\Users\User\Desktop\facul\Analise e Complexidade Alg\2nd'");//separ
+	//Save script para exibir o grafico
+	FILE *sc = fopen("script_gnu.plt", "w");
 	fprintf(sc,"set title \"Ordenação Insertion Sort\"\n ");
 	fprintf(sc,"set grid \n ");
 	fprintf(sc,"set xlabel \"Quantidade de itens no vetor\"\n ");
 	fprintf(sc,"set ylabel \"Tempo gasto para ordenar\"\n ");
 	fprintf(sc,"plot \"g_data.txt\" with linespoints lc 1 \n ");
 	fclose(sc);
+	
+	//chamada do script
+	system("start script_gnu.plt");
+	
 	
 	system("pause");
 	return 0;
