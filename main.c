@@ -1,9 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include <conio.h>
 
-/*	Atividade 1 Analise e Complexidade de Algoritmos 
+
+/*	--Versao para Linux--
+ *	Atividade 1 Analise e Complexidade de Algoritmos 
 	Guilherme Henrique Moreira 22117039-2
 
 	Este programa ira gerar um arquivo "g_data.txt" contendo a quatidade de itens e o tempo que cada vetor demorou para ser ordenado,
@@ -155,7 +156,7 @@ int main(int argc, char *argv[]) {
 	t9= clock();
 	insertionSort(vet9,numvet9);
 	t9= clock() -t9;
-	printf("\n Tempo de execucao v9: %.0lf", ((double)t9)/((CLOCKS_PER_SEC/1000)));
+	printf("\n Tempo de execucao v9: %.0lf \n", ((double)t9)/((CLOCKS_PER_SEC/1000)));
 	
 	//save g_data.txt 
 	FILE *sv = fopen("g_data.txt","w");
@@ -179,11 +180,11 @@ int main(int argc, char *argv[]) {
 	fprintf(sc,"set ylabel \"Tempo gasto para ordenar\"\n ");
 	fprintf(sc,"plot \"g_data.txt\" with linespoints lc 1 \n ");
 	fclose(sc);
-	
+		
 	//chamada do script
-	system("start script_gnu.plt");
+	system("gnuplot -p -c script_gnu.plt");
 	
 	
-	system("pause");
+
 	return 0;
 }
